@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Jun 2021 pada 17.48
--- Versi server: 10.4.14-MariaDB
--- Versi PHP: 7.4.10
+-- Generation Time: Jul 09, 2021 at 05:56 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.4.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `barang`
+-- Table structure for table `barang`
 --
 
 CREATE TABLE `barang` (
@@ -39,7 +39,7 @@ CREATE TABLE `barang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `barang`
+-- Dumping data for table `barang`
 --
 
 INSERT INTO `barang` (`id`, `kode_barang`, `nama_barang`, `satuan`, `id_jenis`, `id_supplier`, `harga`, `stock`) VALUES
@@ -53,7 +53,7 @@ INSERT INTO `barang` (`id`, `kode_barang`, `nama_barang`, `satuan`, `id_jenis`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `country`
+-- Table structure for table `country`
 --
 
 CREATE TABLE `country` (
@@ -63,7 +63,7 @@ CREATE TABLE `country` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `country`
+-- Dumping data for table `country`
 --
 
 INSERT INTO `country` (`code`, `name`, `population`) VALUES
@@ -81,7 +81,26 @@ INSERT INTO `country` (`code`, `name`, `population`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `jenis`
+-- Table structure for table `fakultas`
+--
+
+CREATE TABLE `fakultas` (
+  `id` int(20) NOT NULL,
+  `nama_fakultas` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `fakultas`
+--
+
+INSERT INTO `fakultas` (`id`, `nama_fakultas`) VALUES
+(1, 'Fakultas Sistem Informasi'),
+(2, 'Fakultas Ilmu Komunikasi');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jenis`
 --
 
 CREATE TABLE `jenis` (
@@ -91,7 +110,7 @@ CREATE TABLE `jenis` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `jenis`
+-- Dumping data for table `jenis`
 --
 
 INSERT INTO `jenis` (`id`, `nama_jenis`, `keterangan`) VALUES
@@ -105,7 +124,7 @@ INSERT INTO `jenis` (`id`, `nama_jenis`, `keterangan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kantor`
+-- Table structure for table `kantor`
 --
 
 CREATE TABLE `kantor` (
@@ -114,7 +133,7 @@ CREATE TABLE `kantor` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `kantor`
+-- Dumping data for table `kantor`
 --
 
 INSERT INTO `kantor` (`id_kantor`, `alamat`) VALUES
@@ -123,39 +142,41 @@ INSERT INTO `kantor` (`id_kantor`, `alamat`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `mahasiswa`
+-- Table structure for table `mahasiswa`
 --
 
 CREATE TABLE `mahasiswa` (
   `id` int(11) NOT NULL,
   `nim` varchar(18) NOT NULL,
   `nama` varchar(50) NOT NULL,
+  `tgl_lahir` varchar(10) NOT NULL,
   `jekel` char(1) NOT NULL,
+  `id_fakultas` int(11) NOT NULL,
   `id_prodi` int(11) NOT NULL,
   `email` varchar(50) NOT NULL,
   `alamat` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `mahasiswa`
+-- Dumping data for table `mahasiswa`
 --
 
-INSERT INTO `mahasiswa` (`id`, `nim`, `nama`, `jekel`, `id_prodi`, `email`, `alamat`) VALUES
-(1, '190101', 'Maymunah', 'P', 3, 'maymunah.01@gmail.com', 'Pasar Baru, Padang'),
-(2, '190102', 'Anto', 'L', 1, 'anto.02@gmail.com', 'Jalan Dr. Moh. Hatta, Padang'),
-(3, '190103', 'Ani', 'P', 2, 'ani03@gmail.com', 'Siteba, Padang'),
-(4, '190104', 'Ferro', 'L', 1, 'ferro.04@gmail.com', 'Pengambiran, Padang'),
-(5, '190105', 'Sigit', 'L', 3, 'sigit.05@gmail.com', 'Pasar Baru, Padang'),
-(6, '190106', 'Dina', 'P', 2, 'dina.06@gmail.com', 'Lapai, Padang'),
-(7, '190107', 'Hanifah', 'P', 1, 'hanifah.07@gmail.com', 'Andalas, Padang'),
-(8, '190108', 'Yusuf', 'P', 1, 'yusuf.08@gmail.com', 'Gunung Pangilun, Padang'),
-(9, '190109', 'Arif', 'L', 3, 'arif.09@gmail.com', 'Lapai, Padang'),
-(10, '190110', 'Sekar', 'P', 2, 'sekar.10@gmail.com', 'Tunggul Hitam, Padang');
+INSERT INTO `mahasiswa` (`id`, `nim`, `nama`, `tgl_lahir`, `jekel`, `id_fakultas`, `id_prodi`, `email`, `alamat`) VALUES
+(1, '190101', 'Maymunah', '2001-01-01', 'P', 1, 4, 'maymunah.01@gmail.com', 'Pasar Baru, Padang'),
+(2, '190102', 'Anto', '', 'L', 0, 1, 'anto.02@gmail.com', 'Jalan Dr. Moh. Hatta, Padang'),
+(3, '190103', 'Ani', '', 'P', 0, 2, 'ani03@gmail.com', 'Siteba, Padang'),
+(4, '190104', 'Ferro', '', 'L', 0, 1, 'ferro.04@gmail.com', 'Pengambiran, Padang'),
+(5, '190105', 'Sigit', '', 'L', 0, 3, 'sigit.05@gmail.com', 'Pasar Baru, Padang'),
+(6, '190106', 'Dina', '', 'P', 0, 2, 'dina.06@gmail.com', 'Lapai, Padang'),
+(7, '190107', 'Hanifah', '', 'P', 0, 1, 'hanifah.07@gmail.com', 'Andalas, Padang'),
+(8, '190108', 'Yusuf', '', 'P', 0, 1, 'yusuf.08@gmail.com', 'Gunung Pangilun, Padang'),
+(9, '190109', 'Arif', '', 'L', 0, 3, 'arif.09@gmail.com', 'Lapai, Padang'),
+(10, '190110', 'Sekar', '', 'P', 0, 2, 'sekar.10@gmail.com', 'Tunggul Hitam, Padang');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pegawai`
+-- Table structure for table `pegawai`
 --
 
 CREATE TABLE `pegawai` (
@@ -169,7 +190,7 @@ CREATE TABLE `pegawai` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `pegawai`
+-- Dumping data for table `pegawai`
 --
 
 INSERT INTO `pegawai` (`id_pegawai`, `nama_pegawai`, `tgl_lahir`, `jekel`, `alamat`, `email`, `id_kantor`) VALUES
@@ -181,28 +202,31 @@ INSERT INTO `pegawai` (`id_pegawai`, `nama_pegawai`, `tgl_lahir`, `jekel`, `alam
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `prodi`
+-- Table structure for table `prodi`
 --
 
 CREATE TABLE `prodi` (
   `id` int(11) NOT NULL,
   `prodi` varchar(50) NOT NULL,
+  `id_fakultas` int(11) NOT NULL,
   `keterangan` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `prodi`
+-- Dumping data for table `prodi`
 --
 
-INSERT INTO `prodi` (`id`, `prodi`, `keterangan`) VALUES
-(1, 'D3-Teknik Komputer', 'Masa Pendidikan 3 tahun'),
-(2, 'D3-Manajemen Informatika', 'Masa Pendidikan 3 tahun'),
-(3, 'D4-Teknologi Rekayasa Perangkat Lunak', 'Masa Pendidikan 4 tahun');
+INSERT INTO `prodi` (`id`, `prodi`, `id_fakultas`, `keterangan`) VALUES
+(1, 'D3-Teknik Komputer', 0, 'Masa Pendidikan 3 tahun'),
+(2, 'D3-Manajemen Informatika', 0, 'Masa Pendidikan 3 tahun'),
+(3, 'D4-Teknologi Rekayasa Perangkat Lunak', 0, 'Masa Pendidikan 4 tahun'),
+(4, 'S1 - Ilmu Komputer', 1, 'Sarjana'),
+(5, 'S1 - Ilmu Komunikasi', 2, 'Sarjana');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `supplier`
+-- Table structure for table `supplier`
 --
 
 CREATE TABLE `supplier` (
@@ -214,7 +238,7 @@ CREATE TABLE `supplier` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `supplier`
+-- Dumping data for table `supplier`
 --
 
 INSERT INTO `supplier` (`id`, `nama_supplier`, `notelp`, `email`, `alamat`) VALUES
@@ -230,7 +254,7 @@ INSERT INTO `supplier` (`id`, `nama_supplier`, `notelp`, `email`, `alamat`) VALU
 --
 
 --
--- Indeks untuk tabel `barang`
+-- Indexes for table `barang`
 --
 ALTER TABLE `barang`
   ADD PRIMARY KEY (`id`),
@@ -238,108 +262,122 @@ ALTER TABLE `barang`
   ADD KEY `barang_supplier` (`id_supplier`);
 
 --
--- Indeks untuk tabel `country`
+-- Indexes for table `country`
 --
 ALTER TABLE `country`
   ADD PRIMARY KEY (`code`);
 
 --
--- Indeks untuk tabel `jenis`
+-- Indexes for table `fakultas`
+--
+ALTER TABLE `fakultas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `jenis`
 --
 ALTER TABLE `jenis`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `kantor`
+-- Indexes for table `kantor`
 --
 ALTER TABLE `kantor`
   ADD PRIMARY KEY (`id_kantor`);
 
 --
--- Indeks untuk tabel `mahasiswa`
+-- Indexes for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_prodi` (`id_prodi`);
+  ADD KEY `id_prodi` (`id_prodi`),
+  ADD KEY `id_fakultas` (`id_fakultas`);
 
 --
--- Indeks untuk tabel `pegawai`
+-- Indexes for table `pegawai`
 --
 ALTER TABLE `pegawai`
   ADD PRIMARY KEY (`id_pegawai`),
   ADD KEY `id_kantor` (`id_kantor`);
 
 --
--- Indeks untuk tabel `prodi`
+-- Indexes for table `prodi`
 --
 ALTER TABLE `prodi`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_fakultas` (`id_fakultas`);
 
 --
--- Indeks untuk tabel `supplier`
+-- Indexes for table `supplier`
 --
 ALTER TABLE `supplier`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `barang`
+-- AUTO_INCREMENT for table `barang`
 --
 ALTER TABLE `barang`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `jenis`
+-- AUTO_INCREMENT for table `fakultas`
+--
+ALTER TABLE `fakultas`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `jenis`
 --
 ALTER TABLE `jenis`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `kantor`
+-- AUTO_INCREMENT for table `kantor`
 --
 ALTER TABLE `kantor`
   MODIFY `id_kantor` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `mahasiswa`
+-- AUTO_INCREMENT for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT untuk tabel `pegawai`
+-- AUTO_INCREMENT for table `pegawai`
 --
 ALTER TABLE `pegawai`
   MODIFY `id_pegawai` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `prodi`
+-- AUTO_INCREMENT for table `prodi`
 --
 ALTER TABLE `prodi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT untuk tabel `supplier`
+-- AUTO_INCREMENT for table `supplier`
 --
 ALTER TABLE `supplier`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `barang`
+-- Constraints for table `barang`
 --
 ALTER TABLE `barang`
   ADD CONSTRAINT `barang_jenis` FOREIGN KEY (`id_jenis`) REFERENCES `jenis` (`id`),
   ADD CONSTRAINT `barang_supplier` FOREIGN KEY (`id_supplier`) REFERENCES `supplier` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `pegawai`
+-- Constraints for table `pegawai`
 --
 ALTER TABLE `pegawai`
   ADD CONSTRAINT `pegawai_ibfk_1` FOREIGN KEY (`id_kantor`) REFERENCES `kantor` (`id_kantor`);
